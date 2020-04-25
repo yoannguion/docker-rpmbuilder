@@ -1,0 +1,50 @@
+#! /usr/bin/perl -w
+
+# Tool to obtain source files needed to build SRPM.
+
+use Cwd;
+use File::Basename;
+
+sub info
+{
+    print (" * @_\n");
+}
+
+my ($specfile, $output) = @ARGV;
+
+if (not defined $specfile) {
+  die "Need specfile\n";
+}
+if (not defined $output) {
+  $output=".";
+  info "use default output dir .";
+}
+
+
+my @sources = `spectool $specfile -S`;
+if ($? >> 8) {
+    die ("can't successfully run 'spectool'");
+}
+
+# Go through all 'SourceN' statements in spec file.
+for my $source_line (@sources)
+{
+    chomp $source_line;
+    my ($id, $source) = split (/ /, $source_line, 2);
+    $id =~ s/:$//;
+    $id = lc ($id);
+
+    my $src_basename = basename ($source);
+    if (-f "$output/$src_basename") {
+        info "$src_basename already exists";
+        next;
+    }
+
+
+    info ("downloading sources $source");
+    system ("wget", "-P", "$output", "-q", "$source");
+    if ($? >> 8) {
+        die ("can't wget $source");
+    }
+}
+
