@@ -1,4 +1,6 @@
 #!/bin/bash -eux
+cat ${GITHUB_EVENT_PATH}
+
 # prepare upload URL
 RELEASE_ASSETS_UPLOAD_URL=$(cat ${GITHUB_EVENT_PATH} | jq -r .release.upload_url)
 RELEASE_ASSETS_UPLOAD_URL=${RELEASE_ASSETS_UPLOAD_URL%\{?name,label\}}

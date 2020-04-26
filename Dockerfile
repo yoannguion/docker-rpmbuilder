@@ -8,7 +8,7 @@ LABEL "com.github.actions.color"="green"
 
 RUN yum -y --setopt="tsflags=nodocs" update && \
     yum -y --setopt="tsflags=nodocs" install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm && \
-    yum install -y rpmdevtools yum-utils wget rpm-sign expect && \
+    yum install -y rpmdevtools yum-utils wget rpm-sign expect jq && \
     dnf config-manager --set-enabled PowerTools && \
     dnf config-manager --set-enabled extras && \
     dnf group install -y "Development Tools" && \
