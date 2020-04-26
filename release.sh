@@ -1,4 +1,4 @@
-#!/bin/bash -eux
+#!/bin/bash
 cat ${GITHUB_EVENT_PATH}
 
 # prepare upload URL
