@@ -8,4 +8,4 @@ cp -a --reflink=auto "${SPEC}" "${TOPDIR}/SPECS/"
 
 # build the RPMs
 /srpm-tool-get-sources ${TOPDIR}/SPECS/${SPEC}" "${TOPDIR}/SOURCES/"
-rpmbuild "${VERBOSE:+-v}" -ba "${TOPDIR}/SPECS/${SPEC}"
+rpmbuild -ba "${TOPDIR}/SPECS/${SPEC}"
