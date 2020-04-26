@@ -7,8 +7,16 @@ if [[ $1 == --sh ]]; then
   shift
 fi
 
-SPEC="$1"
-OUTDIR="${2:-$PWD}"
+if [ ! -z "$SPEC_FILE" ]; then
+  SPEC=$SPEC_FILE
+else
+  SPEC="$1"
+fi
+
+if [ -z "$OUTDIR" ]; then
+  OUTDIR="${2:-$PWD}"
+fi
+
 if [[ -z ${SPEC} || ! -e ${SPEC} ]]; then
   echo "Usage: docker run [--rm]" \
     "--volume=/path/to/source:/src --workdir=/src" \
