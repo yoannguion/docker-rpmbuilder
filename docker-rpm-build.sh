@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 SPEC="$1"
 TOPDIR="/home/rpmbuild/rpmbuild"
 

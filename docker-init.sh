@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 BUILD=true
 if [[ $1 == --sh ]]; then
   BUILD=false
