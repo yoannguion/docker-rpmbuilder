@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e "${VERBOSE:+-x}"
 
+SPEC="${1:?}"
 TOPDIR="/home/rpmbuild/rpmbuild"
 
 # copy sources and spec into rpmbuild's work dir

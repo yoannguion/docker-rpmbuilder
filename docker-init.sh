@@ -38,7 +38,7 @@ if ! ${BUILD}; then
 fi
 
 # execute the build as rpmbuild user
-runuser rpmbuild /docker-rpm-build.sh "$@"
+runuser rpmbuild /docker-rpm-build.sh "$SPEC"
 
 # copy the results back; done as root as rpmbuild most likely doesn't
 # have permissions for OUTDIR; ensure ownership of output is consistent
