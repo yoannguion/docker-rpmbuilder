@@ -11,7 +11,7 @@ RUN yum -y --setopt="tsflags=nodocs" update && \
     yum install -y rpmdevtools yum-utils wget rpm-sign expect && \
     dnf config-manager --set-enabled PowerTools && \
     dnf config-manager --set-enabled extras && \
-    dnf group install "Development Tools" && \
+    dnf group install -y "Development Tools" && \
     yum clean all && \
     rm -rf /var/cache/*
 
