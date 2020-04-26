@@ -15,7 +15,7 @@ RUN yum -y --setopt="tsflags=nodocs" update && \
     yum clean all && \
     rm -rf /var/cache/*
 
-ADD docker-init.sh docker-rpm-build.sh srpm-tool-get-sources /
+ADD docker-init.sh docker-rpm-build.sh srpm-tool-get-sources release.sh /
 RUN chmod +x /*.sh /srpm-tool-get-sources
 
 RUN useradd rpmbuild

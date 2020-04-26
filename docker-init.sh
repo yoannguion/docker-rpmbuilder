@@ -38,16 +38,3 @@ fi
 
 # execute the build as rpmbuild user
 runuser rpmbuild /docker-rpm-build.sh "${SPEC}"
-
-# copy the results back; done as root as rpmbuild most likely doesn't
-# have permissions for OUTDIR; ensure ownership of output is consistent
-# with source so that the caller of this image doesn't run into
-# permission issues
-mkdir -p "${OUTDIR}"
-cp -a --reflink=auto \
-  ~rpmbuild/rpmbuild/{RPMS,SRPMS} "${OUTDIR}/"
-TO_CHOWN=( "${OUTDIR}/"{RPMS,SRPMS} )
-if [[ ${OUTDIR} != ${PWD} ]]; then
-  TO_CHOWN=( "${OUTDIR}" )
-fi
-chown -R --reference="${PWD}" "${TO_CHOWN[@]}"
