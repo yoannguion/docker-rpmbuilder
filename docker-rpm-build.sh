@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e "${VERBOSE:+-x}"
 
-TOPDIR="${HOME}/rpmbuild"
+TOPDIR="/home/rpmbuild/rpmbuild"
 
 # copy sources and spec into rpmbuild's work dir
 cp "${VERBOSE:+-v}" -a --reflink=auto * "${TOPDIR}/SOURCES/"
