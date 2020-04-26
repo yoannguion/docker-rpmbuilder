@@ -1,12 +1,10 @@
 #!/bin/bash
-set -e "${VERBOSE:+-x}"
-
-SPEC="${1:?}"
+SPEC="$1"
 TOPDIR="/home/rpmbuild/rpmbuild"
 
 # copy sources and spec into rpmbuild's work dir
-cp "${VERBOSE:+-v}" -a --reflink=auto * "${TOPDIR}/SOURCES/"
-cp "${VERBOSE:+-v}" -a --reflink=auto "${SPEC}" "${TOPDIR}/SPECS/"
+cp -a --reflink=auto * "${TOPDIR}/SOURCES/"
+cp -a --reflink=auto "${SPEC}" "${TOPDIR}/SPECS/"
 
 # build the RPMs
 /srpm-tool-get-sources ${TOPDIR}/SPECS/${SPEC}" "${TOPDIR}/SOURCES/"
