@@ -15,13 +15,14 @@ return $?
 
 
 cat ${GITHUB_EVENT_PATH}
-
 # prepare upload URL
-RELEASE_ASSETS_UPLOAD_URL=$(cat ${GITHUB_EVENT_PATH} | jq -r .release.upload_url)
+REPO_URL=$(cat ${GITHUB_EVENT_PATH} | jq -r .repository.url)
+echo $REPO_URL
+LATEST_RELEASE_URL="$REPO_URL/releases/latest"
+echo $LATEST_RELEASE_URL
+RELEASE_ASSETS_UPLOAD_URL=$(curl -H "Authorization: Bearer ${RELEASE_GITHUB_TOKEN}" $LATEST_RELEASE_URL | jq -r .upload_url)
 RELEASE_ASSETS_UPLOAD_URL=${RELEASE_ASSETS_UPLOAD_URL%\{?name,label\}}
 echo "release url $RELEASE_ASSETS_UPLOAD_URL"
-
-
 
 for i in $(find /home/rpmbuild/rpmbuild/SRPMS/ -name *.src.rpm); do
   uploadToGitHub $i
