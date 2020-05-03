@@ -1,9 +1,9 @@
 name: Build And Push Docker
 on:
   repository_dispatch:
-    types: [build_docker]
+    types: [build_docker_el8_release_to_github]
   push:
-    branches: [ master ]
+    branches: [ el8-release-to-github ]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,4 +15,4 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: yoannguion/rpmbuilder
-        tags: latest,el8
+        tags: el8-release-to-github
