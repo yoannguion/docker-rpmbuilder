@@ -3,7 +3,7 @@ on:
   repository_dispatch:
     types: [build_docker]
   push:
-    branches: [ master ]
+    branches: [ el7 ]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,4 +15,4 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: yoannguion/rpmbuilder
-        tags: latest,el8
+        tags: el7
