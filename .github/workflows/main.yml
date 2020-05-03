@@ -1,7 +1,7 @@
 name: Build And Push Docker
 on:
   repository_dispatch:
-    types: [build_docker]
+    types: [build_docker_el7]
   push:
     branches: [ el7 ]
 jobs:
