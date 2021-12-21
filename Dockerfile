@@ -21,6 +21,6 @@ RUN chmod +x /*.sh /srpm-tool-get-sources
 RUN useradd rpmbuild
 USER rpmbuild
 RUN rpmdev-setuptree
-USER root
+USER "${UID_BUILDER:-root}:${GID_BUILDER:-root}"
 
 CMD ["/docker-init.sh"]
