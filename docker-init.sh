@@ -36,6 +36,22 @@ if ! ${BUILD}; then
   exec "${SHELL:-/bin/bash}" -l
 fi
 
+if [[ -n ${UID_BUILDER} ]]; then
+  echo "change rpmbuild uid to ${UID_BUILDER}"
+  usermod -u ${UID_BUILDER} rpmbuild
+fi
+
+if [[ -n ${GID_BUILDER} ]]; then
+  echo "change rpmbuild gid to ${GID_BUILDER}"
+  groupmod  -g ${GID_BUILDER} rpmbuild
+fi
+
+chown rpmbuild: -R /home/rpmbuild
+
 # execute the build as rpmbuild user
 runuser rpmbuild /docker-rpm-build.sh "${SPEC}"
-/release.sh
+if [[ -n ${UID_BUILDER} ]]; then
+  runuser rpmbuild /release.sh
+else
+  /release.sh
+fi
