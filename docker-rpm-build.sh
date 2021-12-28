@@ -2,7 +2,8 @@
 set -e
 SPEC="$1"
 TOPDIR="/home/rpmbuild/rpmbuild"
-
+id -u
+id -g
 # copy sources and spec into rpmbuild's work dir
 cp -a --reflink=auto * "${TOPDIR}/SOURCES/"
 cp -a --reflink=auto "${SPEC}" "${TOPDIR}/SPECS/"
