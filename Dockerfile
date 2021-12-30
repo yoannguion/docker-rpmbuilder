@@ -6,7 +6,8 @@ LABEL "com.github.actions.description"="Build RPM on centos 6"
 LABEL "com.github.actions.icon"="pocket"
 LABEL "com.github.actions.color"="green"
 
-RUN curl https://www.getpagespeed.com/files/centos6-eol.repo --output /etc/yum.repos.d/CentOS-Base.repo && \
+RUN curl https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-6 --output /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6 && \
+    curl https://www.getpagespeed.com/files/centos6-eol.repo --output /etc/yum.repos.d/CentOS-Base.repo && \
     curl https://www.getpagespeed.com/files/centos6-epel-eol.repo --output /etc/yum.repos.d/epel.repo && \
     yum -y update && \
     yum install -y rpmdevtools yum-utils wget rpm-sign expect jq && \
