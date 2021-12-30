@@ -1,9 +1,9 @@
 name: Build And Push Docker
 on:
   repository_dispatch:
-    types: [build_docker_el7]
+    types: [build_docker_el6]
   push:
-    branches: [ el7 ]
+    branches: [ el6 ]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,4 +15,4 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: yoannguion/rpmbuilder
-        tags: el7
+        tags: el6
