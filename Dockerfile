@@ -6,7 +6,8 @@ LABEL "com.github.actions.description"="Build RPM on centos 6"
 LABEL "com.github.actions.icon"="pocket"
 LABEL "com.github.actions.color"="green"
 
-RUN yum -y update && \
+RUN curl https://www.getpagespeed.com/files/centos6-eol.repo --output /etc/yum.repos.d/CentOS-Base.repo && \
+    yum -y update && \
     yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm && \
     yum install -y rpmdevtools yum-utils wget rpm-sign expect jq && \
     yum install -y autoconf automake bash bzip2 coreutils cpio diffutils system-release findutils gawk gcc gcc-c++ git grep gzip info make patch pkgconfig redhat-rpm-config rpm-build sed shadow-utils sudo tar unzip util-linux which xz && \
