@@ -1,4 +1,4 @@
-FROM centos:8
+FROM rockylinux:8
 MAINTAINER yoannguion <yoannguion@gmail.com>
 LABEL "maintainer"="Yoann Guion <yoannguion@gmail.com>"
 LABEL "com.github.actions.name"="RPM Builder"
