@@ -34,6 +34,11 @@ for my $source_line (@sources)
     $id =~ s/:$//;
     $id = lc ($id);
 
+    if (-f "$output/$source") {
+        info "$source already exists";
+        next;
+    }
+
     my $src_basename = basename ($source);
     if (-f "$output/$src_basename") {
         info "$src_basename already exists";
