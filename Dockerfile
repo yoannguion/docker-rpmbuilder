@@ -10,6 +10,7 @@ RUN yum -y --setopt="tsflags=nodocs" update && \
     yum -y --setopt="tsflags=nodocs" install epel-release && \
     yum install -y rpmdevtools yum-utils wget rpm-sign expect jq && \
     dnf config-manager --set-enabled extras && \
+    dnf config-manager --set-enabled crb && \
     dnf group install -y "Development Tools" && \
     yum clean all && \
     rm -rf /var/cache/*
