@@ -43,7 +43,7 @@ for i in $(find /home/rpmbuild/rpmbuild/SRPMS/ -name *.src.rpm); do
   uploadToGitHub $i
 done
 
-for i in $(find /home/rpmbuild/rpmbuild/RPMS/x86_64/ -name *.rpm); do
+for i in $(find /home/rpmbuild/rpmbuild/RPMS/ -name *.rpm); do
   file=`basename $i`
   if [[ $file != *"debug"* ]]; then
     uploadToGitHub $i
