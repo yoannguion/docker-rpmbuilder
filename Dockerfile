@@ -18,6 +18,7 @@ RUN yum -y --setopt="tsflags=nodocs" update && \
 ADD docker-init.sh docker-rpm-build.sh srpm-tool-get-sources release.sh /
 RUN chmod +x /*.sh /srpm-tool-get-sources
 
+ENV QA_RPATHS=
 ENV UID_BUILDER=
 ENV GID_BUILDER=
 RUN printf "=== UID[%s] / GID[%s]\n" "${UID_BUILDER}" "${GID_BUILDER}"; set -xe \
