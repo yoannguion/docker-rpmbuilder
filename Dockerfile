@@ -6,6 +6,10 @@ LABEL "com.github.actions.description"="Build RPM on centos 7"
 LABEL "com.github.actions.icon"="pocket"
 LABEL "com.github.actions.color"="green"
 
+RUN sed -ie 's!^mirrorlist!#mirrorlist!g' /etc/yum.repos.d/CentOS-Base.repo && \
+    sed -ie 's!^#baseurl=http://mirror.centos.org/centos/\$releasever!baseurl=http://vault.centos.org/7.9.2009!g' /etc/yum.repos.d/CentOS-Base.repo
+
+
 RUN yum -y --setopt="tsflags=nodocs" update && \
     yum -y --setopt="tsflags=nodocs" install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && \
     yum install -y rpmdevtools yum-utils wget rpm-sign expect jq && \
