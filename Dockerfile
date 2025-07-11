@@ -1,8 +1,8 @@
-FROM almalinux:9
+FROM almalinux:10
 MAINTAINER yoannguion <yoannguion@gmail.com>
 LABEL "maintainer"="Yoann Guion <yoannguion@gmail.com>"
 LABEL "com.github.actions.name"="RPM Builder"
-LABEL "com.github.actions.description"="Build RPM on almalinux 9"
+LABEL "com.github.actions.description"="Build RPM on almalinux 10"
 LABEL "com.github.actions.icon"="pocket"
 LABEL "com.github.actions.color"="green"
 
