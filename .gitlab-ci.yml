@@ -1,7 +1,8 @@
 # GitLab CI — docker-rpmbuilder
 # Construit l'image RPM builder de la branche (el8, el9, el10…) et la publie sur Harbor :
 #   harbor.forge.enovacom.cloud/enovacomdev/ci/docker-rpmbuilder:<branche>
-#   + un tag daté <branche>-AAAAMMJJ, pour revenir à une image précédente.
+# Un seul tag par branche : l'image précédente perd son tag et la rétention quotidienne
+# d'enovacomdev (qui ne garde que les artefacts tagués) la supprime.
 # Même fichier sur toutes les branches : le tag est tiré du nom de la branche.
 #
 # Déclencheurs : push sur la branche, pipeline planifié (Build > Pipeline schedules, pour
@@ -36,6 +37,5 @@ image:build:
       --label "org.opencontainers.image.source=$CI_PROJECT_URL"
       --label "org.opencontainers.image.revision=$CI_COMMIT_SHA"
       -t "$IMAGE:$CI_COMMIT_BRANCH"
-      -t "$IMAGE:$CI_COMMIT_BRANCH-$(date +%Y%m%d)"
       .
-    - docker push --all-tags "$IMAGE"
+    - docker push "$IMAGE:$CI_COMMIT_BRANCH"
